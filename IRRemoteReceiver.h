@@ -9,8 +9,8 @@
 
 class IRRemoteReceiver : public IRrecv, public EventSource
 {
-    public: static int COMMAND_RECV_EVENT; 
-    public: static int COMMAND_REPT_EVENT; 
+    public: const EVENT_ID COMMAND_RECV_EVENT = (EventSourceID::IRSensor | EventCode::Command); 
+    public: const EVENT_ID COMMAND_REPT_EVENT = (EventSourceID::IRSensor | EventCode::CommandRepeat);  
 
     //****************************************************************************
     // Constructors

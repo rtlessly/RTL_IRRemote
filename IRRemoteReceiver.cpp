@@ -6,8 +6,8 @@
 static DebugHelper Debug("IRRemoteReceiver");
 
 
-int IRRemoteReceiver::COMMAND_RECV_EVENT = EventSource::GenerateEventID(); 
-int IRRemoteReceiver::COMMAND_REPT_EVENT = EventSource::GenerateEventID(); 
+//int IRRemoteReceiver::COMMAND_RECV_EVENT = EventSource::GenerateEventID(); 
+//int IRRemoteReceiver::COMMAND_REPT_EVENT = EventSource::GenerateEventID(); 
 
 
 void IRRemoteReceiver::Initialize()
