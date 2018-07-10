@@ -1,42 +1,42 @@
 #define DEBUG 0
 
+#include<Arduino.h>
+#include <RTL_Debug.h>
+
 #include "IRRemoteReceiver.h"
 
 
-static DebugHelper Debug("IRRemoteReceiver");
+DEFINE_CLASSNAME(IRRemoteReceiver);
 
 
-//int IRRemoteReceiver::COMMAND_RECV_EVENT = EventSource::GenerateEventID(); 
-//int IRRemoteReceiver::COMMAND_REPT_EVENT = EventSource::GenerateEventID(); 
-
-
-void IRRemoteReceiver::Initialize()
+void IRRemoteReceiver::Begin()
 {
-    Debug.Log("Initialize");
+    TRACE(Logger(_classname_, this)  << F(":Begin, pin=") << (int)irparams.recvpin << endl);
     enableIRIn();
 }
 
 
 void IRRemoteReceiver::Poll()
 {
+    TRACE(Logger(_classname_, this) << F(":Poll") << endl); 
     decode_results results;
-  
+
     // check to see if the receiver has received a command
     if (decode(&results))
     {
+        TRACE(Logger(_classname_, this) << F(":Poll, decoded=") << _HEX(results.value)  << endl);
+
         int eventID = COMMAND_REPT_EVENT;
-    
+
         if (results.value != IR_REPEAT)
         {
           eventID = COMMAND_RECV_EVENT;
-          _lastValue = results.value;      
+          _lastValue = results.value;
         }
-        
-        Event event(eventID, _lastValue);
-        
+
         // Queue an IR Remote event
-        DispatchEvent(&event);
-        
+        if (!results.overflow) QueueEvent(eventID, _lastValue);
+
         // tell the library we're ready to listen for another command
         resume();
     }
