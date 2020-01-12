@@ -4,6 +4,7 @@
 #include <RTL_Debug.h>
 
 #include "IRRemoteReceiver.h"
+#include "RTL_IR_CommandCodes.h"
 
 
 DEFINE_CLASSNAME(IRRemoteReceiver);

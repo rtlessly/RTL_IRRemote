@@ -2,10 +2,8 @@
 #define _IRRemoteReceiver_H_
 
 #include <RTL_Stdlib.h>
-#include <RTL_EventFramework.h>
+#include <EventSource.h>
 #include <IRremote.h>
-
-#include "IRCommandCodes.h"
 
 
 class IRRemoteReceiver : public IRrecv, public EventSource
@@ -18,10 +16,7 @@ class IRRemoteReceiver : public IRrecv, public EventSource
     //****************************************************************************
     // Constructors
     //****************************************************************************
-    public: IRRemoteReceiver(int pin=12, int ledPin=13)  : IRrecv(pin, ledPin) 
-    {
-        _id = "IRRemoteReceiver";
-    };
+    public: IRRemoteReceiver(int pin=12, int ledPin=13)  : IRrecv(pin, ledPin) { };
 
     //****************************************************************************
     // Public methods

@@ -1,5 +1,4 @@
-#ifndef _RTL_IR_CommandCodes_h_
-#define _RTL_IR_CommandCodes_h_
+#pragma once
 
 
 #define IR_NONE 0
@@ -35,4 +34,3 @@
 
 #define IR_REPEAT    0xFFFFFFFF     // Repeat previous command
 
-#endif
